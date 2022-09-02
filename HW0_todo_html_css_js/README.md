@@ -4,11 +4,12 @@ HCI Homework 0
 
 ## To run:
 
-Download the project file "HW0_todo_html_css_js"
-Either:
+1. Download the full repo named CS279R traverse to the project folder "HW0_todo_html_css_js"
 
-1. Double click on theindex.html file - it should open up on your default browser
-2. Drag the html file onto your internet browser
+2. Then Either:
+    - Double click on theindex.html file - it should open up on your default browser
+    or
+    - Drag the html file onto your internet browser
 
 Then:
 
