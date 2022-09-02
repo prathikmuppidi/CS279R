@@ -37,7 +37,7 @@ The code here is based on an example by CodingNepal - youtube.com/codingnepal
 the link to the tutorial thats used is as follows:
 https://www.codingnepalweb.com/create-todo-list-app-html-javascript/
 Note that the code that was provided on the website was imported to satisfy the
-assingment requirments.
+assignment requirments.
 
 Citation: CodingNepal (2022) Create A Todo List App in HTML CSS & JavaScript (version 1)[Computer Program] /
 https://www.codingnepalweb.com/create-todo-list-app-html-javascript/
