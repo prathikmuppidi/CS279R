@@ -1,0 +1,42 @@
+<!-- The code here is based on an example by CodingNepal - youtube.com/codingnepal -->
+<!-- the link to the tutorial thats used is as follows: -->
+<!-- https://www.codingnepalweb.com/create-todo-list-app-html-javascript/ -->
+<!-- Note that code that was provided on the website was imported to satisfy the assingment requirments */ -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <!-- The "head" portion of the code is meant for the tab heading and any metadata information
+      that the document holds. Also, note that custom css styles are being imported from a .css 
+      file that resides in this directory as well as a line.css that is imported from unicons. 
+      The unicons important holds styles ment for task settings like "editing" and "deleting" a task-->
+  <head>
+    <meta charset="utf-8">  
+    <title>Todo List App in JavaScript | CodingNepal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  </head>
+  <!-- The "body" portion of the HTML document and holds 95% of the logic that populate the html page -->
+  <body>
+      <!-- The wrapper is box that holds all the elemets that allows the user to enter tasks and monitor tasks -->
+    <div class="wrapper">
+      <!-- The task-input is the text bar that the user can enter in a new task -->
+      <div class="task-input">
+        <input type="text" placeholder="Add a new task + return">
+      </div>
+      <!-- the controls div holds all the settings to filter what type of tasks are being used. Its a horizontal pane -->
+      <div class="controls">
+        <!-- Part 1 of the controls pane are the filters button -->
+        <div class="filters">
+          <span class="active" id="all">All</span>
+          <span id="pending">Pending</span>
+          <span id="completed">Completed</span>
+        </div>
+        <!-- Part 2 of the controls pane is the clear button -->
+        <button class="clear-btn">Clear All</button>
+      </div>
+      <!-- Everything in the task-box is going to be populated by the main_logic javascript -->
+      <ul class="task-box"></ul>
+    </div>
+    <!-- This imports the right javascript file and makes sure the HTML elements are approiately updated -->
+    <script src="main_logic.js"></script>
+  </body>
+</html>

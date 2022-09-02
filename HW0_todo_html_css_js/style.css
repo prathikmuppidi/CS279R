@@ -1,0 +1,225 @@
+/* ---------------------------------------------------------------------------- */
+/* The code here is based on an example by CodingNepal - youtube.com/codingnepal 
+/* the link to the tutorial thats used is as follows: */
+/* Note that the code that was provided on the website was imported to satisfy the 
+/* assingment requirments
+/* https://www.codingnepalweb.com/create-todo-list-app-html-javascript/   */
+/* Citation: CodingNepal (2022) Create A Todo List App in HTML CSS & JavaScript (version 1)[Computer Program] */
+/* https://www.codingnepalweb.com/create-todo-list-app-html-javascript/ */
+/* ---------------------------------------------------------------------------- */
+
+/* Import Google Font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+/* This holds the background color and overall settings for the body of the whole HTML document */
+body{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #684aff, #762dfe);
+}
+
+/* This holds the styles for the wrapper and child elements like the task input bar are all
+relatively position to the wrapper. */
+.wrapper{
+  max-width: 405px;
+  padding: 30px 0 30px;
+  margin: 125px auto;
+  background: rgb(239, 237, 237);
+  border-radius: 7px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+/* ------------------------------------------------------------------------------------------------- */
+/* This is what the task div element and its styling */
+/* ------------------------------------------------------------------------------------------------- */
+.task-input{
+  height: 52px;
+  padding: 0 25px;
+  position: relative;
+}
+/* The commpand input bar inherits the task-input styling because its an element inside the "task-input" div */
+/* the position of the user inputs are relative to the task-input parent above */
+.task-input input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 0 20px 0 20px;
+  border: 1px solid #999;
+}
+/* This is the styling for the task bar when users select or type in it */
+.task-input input:focus,
+.task-input input.active{
+  padding-left: 20px;
+  border: 2px solid #3C87FF;
+}
+/* This is the styling for the temporary instructions that say "Add a new task + return" */
+.task-input input::placeholder{
+  color: #bfbfbf;
+}
+/* ------------------------------------------------------------------------------------------------- */
+
+/* ------------------------------------------------------------------------------------------------- */
+/* This is the styling for the control bar that holds the filtering types and the clear button */
+/* ------------------------------------------------------------------------------------------------- */
+.controls, li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.controls{
+  padding: 18px 25px;
+  border-bottom: 1px solid #ccc;
+}
+.filters span{
+  margin: 0 8px;
+  font-size: 17px;
+  color: #444444;
+  cursor: pointer;
+}
+.filters span:first-child{
+  margin-left: 0;
+}
+.filters span.active{
+  color: #3C87FF;
+}
+.controls .clear-btn{
+  border: none;
+  opacity: 0.6;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 7px 13px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+  pointer-events: none;
+  transition: transform 0.25s ease;
+  background: linear-gradient(135deg, #b293eb 0%, #684aff 100%);
+}
+/* Styling for when the button is clickable (active) vs a disabled button */
+.clear-btn.active{
+  opacity: 0.9;
+  pointer-events: auto;
+}
+/* Styling and action for when the button clicked */
+.clear-btn:active{
+  transform: scale(0.93);
+}
+/* ------------------------------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/* This is the styling settings for all task box items that were used. */
+/* -------------------------------------------------------------------------- */
+.task-box{
+  margin-top: 20px;
+  margin-right: 5px;
+  padding: 0 20px 10px 25px;
+}
+.task-box.overflow{
+  overflow-y: auto;
+  max-height: 300px;
+}
+.task-box::-webkit-scrollbar{
+  width: 5px;
+  color:rgb(75, 75, 75);
+}
+.task-box::-webkit-scrollbar-track{
+  border-radius: 25px;
+}
+.task-box::-webkit-scrollbar-thumb{
+  background: #656565;
+  border-radius: 25px;
+}
+.task-box .task{
+  list-style: none;
+  font-size: 17px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  align-items: flex-start;
+  border-bottom: 1px solid #ccc;
+}
+.task-box .task:last-child{
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.task-box .task label{
+  display: flex;
+  align-items: flex-start;
+}
+.task label input{
+  margin-top: 7px;
+  accent-color: #3C87FF;
+}
+.task label p{
+  user-select: none;
+  margin-left: 12px;
+  word-wrap: break-word;
+}
+.task label p.checked{
+  text-decoration: line-through;
+}
+/* -------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------- */
+/* Styles for the menu settings button on the right */
+/* ----------------------------------------------------- */
+.settings :where(i, li){
+  cursor: pointer;
+}
+.settings .task-menu{
+  z-index: 10;
+  right: -5px;
+  bottom: -65px;
+  padding: 5px 0;
+  background: rgb(75, 75, 75);
+  position: absolute;
+  border-radius: 4px;
+  transform: scale(0);
+  transform-origin: top right;
+  box-shadow: 0 0 6px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.task-box .settings{
+  position: relative;
+}
+/* special setting for the menu box to appear in different location around the button so that it */
+/* doesn't go over the wrapper */
+.task-box .task:last-child .task-menu{
+  bottom: 0;
+  transform-origin: bottom right;
+}
+.task-box .task:first-child .task-menu{
+  bottom: -65px;
+  transform-origin: top right;
+}
+.task-menu.show{
+  transform: scale(1);
+}
+.task-menu li{
+  height: 25px;
+  font-size: 16px;
+  margin-bottom: 2px;
+  padding: 15px 15px;
+  color: #fff;
+  cursor: pointer;
+  justify-content: flex-start;
+}
+.task-menu li:last-child{
+  margin-bottom: 0;
+}
+.settings li:hover{
+  background: #bdbdbd;
+}
+.settings li i{
+  padding-right: 16x;
+}
+/* ----------------------------------------------------- */
